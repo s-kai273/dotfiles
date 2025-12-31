@@ -1,6 +1,6 @@
 local M = {}
 
-function splitConf(config, wezterm)
+local function split_conf(config, wezterm)
   local act = wezterm.action
 
   table.insert(config.keys, {
@@ -41,7 +41,7 @@ function splitConf(config, wezterm)
   return config
 end
 
-function newTabConf(config, wezterm)
+local function new_tab_conf(config, wezterm)
   local act = wezterm.action
 
   table.insert(config.keys, {
@@ -56,8 +56,8 @@ function M.apply(config, wezterm)
   config.keys = config.keys or {}
   config.key_tables = config.key_tables or {}
 
-  config = splitConf(config, wezterm)
-  config = newTabConf(config, wezterm)
+  config = split_conf(config, wezterm)
+  config = new_tab_conf(config, wezterm)
   return config
 end
 
