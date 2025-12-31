@@ -1,3 +1,4 @@
+vim.opt.title = true
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.shiftwidth = 2
@@ -10,8 +11,8 @@ vim.opt.hlsearch = true
 vim.opt.wrap = false
 vim.opt.scrolloff = 8
 vim.opt.sidescrolloff = 8
-vim.opt.cursorline = true
-vim.opt.cursorcolumn = true
+vim.opt.cursorline = false
+vim.opt.cursorcolumn = false
 vim.opt.swapfile = false
 vim.opt.backup = false
 vim.opt.undofile = true
