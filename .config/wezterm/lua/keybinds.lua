@@ -47,6 +47,16 @@ local function split_conf(config, wezterm)
       mods = "SHIFT",
       action = act.ActivateTabRelative(1),
     },
+    {
+      key = "h",
+      mods = "CTRL|SHIFT",
+      action = act.MoveTabRelative(-1),
+    },
+    {
+      key = "l",
+      mods = "CTRL|SHIFT",
+      action = act.MoveTabRelative(1),
+    },
   }
   return config
 end
