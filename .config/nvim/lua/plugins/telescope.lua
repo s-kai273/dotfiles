@@ -14,15 +14,31 @@ return {
 
       "nvim-telescope/telescope-ui-select.nvim",
       "nvim-tree/nvim-web-devicons",
-      -- "echasnovski/mini.icons",
     },
 
     cmd = "Telescope",
     keys = {
       { "<leader>ff", function() require("telescope.builtin").find_files() end, desc = "Find files" },
-      { "<leader>fg", function() require("telescope.builtin").live_grep() end, desc = "Live grep" },
-      { "<leader>fb", function() require("telescope.builtin").buffers() end, desc = "Buffers" },
-      { "<leader>fh", function() require("telescope.builtin").help_tags() end, desc = "Help" },
+      { "<leader>fg", function() require("telescope.builtin").live_grep() end,  desc = "Live grep" },
+      { "<leader>fb", function() require("telescope.builtin").buffers() end,    desc = "Buffers" },
+      { "<leader>fh", function() require("telescope.builtin").help_tags() end,  desc = "Help" },
+      {
+        "gd",
+        function()
+          require("telescope.builtin").lsp_definitions()
+        end,
+        desc = "Go to definitions"
+      },
+      {
+        "gr",
+        function()
+          require("telescope.builtin").lsp_references({
+            include_declaration = false,
+            show_line = false,
+          })
+        end,
+        desc = "Go to references"
+      },
     },
 
     config = function()
