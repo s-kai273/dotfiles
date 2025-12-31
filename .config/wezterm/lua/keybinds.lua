@@ -37,6 +37,16 @@ local function split_conf(config, wezterm)
       key = "l",
       action = act.ActivatePaneDirection "Right",
     },
+    {
+      key = "h",
+      mods = "SHIFT",
+      action = act.ActivateTabRelative(-1),
+    },
+    {
+      key = "l",
+      mods = "SHIFT",
+      action = act.ActivateTabRelative(1),
+    },
   }
   return config
 end

@@ -8,8 +8,8 @@ config.font = wezterm.font_with_fallback({
   "JetBrains Mono",
 })
 
-config = require("lua.keybinds").apply(config, wezterm)
 config = require("lua.modal_wezterm").apply(config, wezterm)
+config = require("lua.keybinds").apply(config, wezterm)
 config = require("lua.toggle_opacity").apply(config, wezterm)
 
 return config
