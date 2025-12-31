@@ -1,10 +1,7 @@
 local M = {}
 
-function M.apply(config, wezterm)
+function splitConf(config, wezterm)
   local act = wezterm.action
-
-  config.keys = config.keys or {}
-  config.key_tables = config.key_tables or {}
 
   table.insert(config.keys, {
     key = "w",
@@ -41,6 +38,26 @@ function M.apply(config, wezterm)
       action = act.ActivatePaneDirection "Right",
     },
   }
+  return config
+end
+
+function newTabConf(config, wezterm)
+  local act = wezterm.action
+
+  table.insert(config.keys, {
+    key = "t",
+    mods = "CTRL|SHIFT",
+    action = act.SpawnTab("CurrentPaneDomain"),
+  })
+  return config
+end
+
+function M.apply(config, wezterm)
+  config.keys = config.keys or {}
+  config.key_tables = config.key_tables or {}
+
+  config = splitConf(config, wezterm)
+  config = newTabConf(config, wezterm)
   return config
 end
 
