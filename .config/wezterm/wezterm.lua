@@ -3,6 +3,7 @@ local config = wezterm.config_builder()
 config.color_scheme = "Tokyo Night Moon"
 config.debug_key_events = true
 config.hide_tab_bar_if_only_one_tab = true
+config.window_decorations = "RESIZE"
 config.use_ime = true
 config.warn_about_missing_glyphs = false
 config.font = wezterm.font_with_fallback({
