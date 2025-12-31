@@ -2,6 +2,7 @@ local wezterm = require('wezterm')
 local config = {
   color_scheme = "Tokyo Night Moon",
   debug_key_events = true,
+  use_ime = true,
   font = wezterm.font_with_fallback({
     "JetBrains Mono",
   }),
