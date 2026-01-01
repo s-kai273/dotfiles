@@ -5,7 +5,7 @@ local function split_conf(config, wezterm)
 
   table.insert(config.keys, {
     key = "w",
-    mods = "CTRL|ALT|SHIFT",
+    mods = "ALT",
     action = act.ActivateKeyTable {
       name = "pane_prefix",
       one_shot = true,
