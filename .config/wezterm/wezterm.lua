@@ -1,5 +1,6 @@
 local wezterm = require('wezterm')
 local config = wezterm.config_builder()
+config.automatically_reload_config = true
 config.color_scheme = "Tokyo Night Moon"
 config.debug_key_events = true
 config.hide_tab_bar_if_only_one_tab = true

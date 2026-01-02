@@ -57,6 +57,24 @@ local function split_conf(config, wezterm)
       mods = "CTRL|SHIFT",
       action = act.MoveTabRelative(1),
     },
+    {
+      key = "w",
+      action = act.ActivatePaneDirection 'Next',
+    },
+    {
+      key = "p",
+      action = act.ActivatePaneDirection 'Prev',
+    },
+    {
+      key = "w",
+      mods = "ALT",
+      action = act.ActivatePaneDirection 'Next',
+    },
+    {
+      key = "p",
+      mods = "ALT",
+      action = act.ActivatePaneDirection 'Prev',
+    },
   }
   return config
 end
