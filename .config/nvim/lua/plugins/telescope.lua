@@ -26,10 +26,15 @@ return {
       { "gd",         function() require("telescope.builtin").lsp_definitions() end,                                                  desc = "Go to definitions" },
       { "gr",         function() require("telescope.builtin").lsp_references({ include_declaration = false, show_line = false }) end, desc = "Go to references" },
     },
-
     config = function()
       local telescope = require("telescope")
       local actions = require("telescope.actions")
+
+      local picker_opts = {
+        sort_mru = true,
+        ignore_current_buffer = true,
+        path_display = { "truncate" },
+      }
 
       telescope.setup({
         defaults = {
@@ -40,7 +45,6 @@ return {
             },
           },
         },
-
         extensions = {
           fzf = {
             fuzzy = true,
@@ -50,6 +54,11 @@ return {
           },
           ["ui-select"] = require("telescope.themes").get_dropdown({}),
         },
+        pickers = {
+          find_files = picker_opts,
+          live_grep = picker_opts,
+          buffers = picker_opts,
+        }
       })
 
       pcall(telescope.load_extension, "fzf")
