@@ -20,9 +20,10 @@ return {
     keys = {
       { "<leader>ff", function() require("telescope.builtin").find_files() end,                                                       desc = "Find files" },
       { "<leader>fg", function() require("telescope.builtin").live_grep() end,                                                        desc = "Live grep" },
-      { "<leader>fb", function() require("telescope.builtin").buffers() end,                                                          desc = "Buffers" },
+      { "<leader>bb", function() require("telescope.builtin").buffers() end,                                                          desc = "Buffers" },
       { "<leader>fh", function() require("telescope.builtin").help_tags() end,                                                        desc = "Help" },
       { "<leader>fd", function() require("telescope.builtin").diagnostics() end,                                                      desc = "Diagnostics" },
+      { "<leader>fr", function() require("telescope.builtin").resume() end,                                                           desc = "Resume" },
       { "gd",         function() require("telescope.builtin").lsp_definitions() end,                                                  desc = "Go to definitions" },
       { "gr",         function() require("telescope.builtin").lsp_references({ include_declaration = false, show_line = false }) end, desc = "Go to references" },
     },
@@ -42,7 +43,13 @@ return {
             i = {
               ["<C-j>"] = actions.move_selection_next,
               ["<C-k>"] = actions.move_selection_previous,
+              ["<C-f>"] = actions.preview_scrolling_down,
+              ["<C-b>"] = actions.preview_scrolling_up,
             },
+            n = {
+              ["<C-f>"] = actions.preview_scrolling_down,
+              ["<C-b>"] = actions.preview_scrolling_up,
+            }
           },
         },
         extensions = {
@@ -57,7 +64,12 @@ return {
         pickers = {
           find_files = picker_opts,
           live_grep = picker_opts,
-          buffers = picker_opts,
+          buffers = vim.tbl_deep_extend("force", picker_opts, {
+            mappings = {
+              i = { ["<C-d>"] = actions.delete_buffer },
+              n = { ["<C-d>"] = actions.delete_buffer },
+            }
+          }),
         }
       })
 
