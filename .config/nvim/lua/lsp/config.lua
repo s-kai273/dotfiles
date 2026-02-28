@@ -34,4 +34,8 @@ vim.lsp.config("lua_ls", {
   },
 })
 
-vim.lsp.enable({ "ts_ls", "eslint", "lua_ls" })
+vim.lsp.config("rust_analyzer", {
+  capabilities = capabilities,
+})
+
+vim.lsp.enable({ "ts_ls", "eslint", "lua_ls", "rust_analyzer" })
