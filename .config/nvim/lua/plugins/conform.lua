@@ -10,6 +10,7 @@ return {
       css = { "prettier" },
       html = { "prettier" },
       rust = { "rustfmt" },
+      python = { "black" },
     },
     format_on_save = {
       timeout_ms = 5000,

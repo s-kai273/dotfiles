@@ -11,6 +11,7 @@ return {
         "ts_ls",
         "lua_ls",
         "pyright",
+        "ruff",
         "rust_analyzer",
         "jdtls",
       },

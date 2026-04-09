@@ -38,4 +38,22 @@ vim.lsp.config("rust_analyzer", {
   capabilities = capabilities,
 })
 
-vim.lsp.enable({ "ts_ls", "eslint", "lua_ls", "rust_analyzer" })
+vim.lsp.config("pyright", {
+  capabilities = capabilities,
+  settings = {
+    python = {
+      analysis = {
+        autoImportCompletions = true,
+        autoSearchPaths = true,
+        diagnosticMode = "openFilesOnly",
+        useLibraryCodeForTypes = true,
+      }
+    }
+  }
+})
+
+vim.lsp.config("ruff", {
+  capabilities = capabilities,
+})
+
+vim.lsp.enable({ "ts_ls", "eslint", "lua_ls", "rust_analyzer", "pyright", "ruff" })
