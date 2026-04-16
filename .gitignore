@@ -6,3 +6,4 @@
 !.config/wezterm/**
 !.config/shell/
 !.config/shell/**
+.codex
