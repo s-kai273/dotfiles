@@ -8,6 +8,10 @@ vim.api.nvim_create_autocmd("LspAttach", {
 })
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.workspace = capabilities.workspace or {}
+capabilities.workspace.didChangeWatchedFiles = capabilities.workspace.didChangeWatchedFiles or {}
+capabilities.workspace.didChangeWatchedFiles.dynamicRegistration = true
+
 local ok, cmp = pcall(require, "cmp_nvim_lsp")
 if ok then
   capabilities = cmp.default_capabilities(capabilities)
