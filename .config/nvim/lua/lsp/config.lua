@@ -49,7 +49,7 @@ vim.lsp.config("pyright", {
       analysis = {
         autoImportCompletions = true,
         autoSearchPaths = true,
-        diagnosticMode = "openFilesOnly",
+        diagnosticMode = "workspace",
         useLibraryCodeForTypes = true,
       }
     }
