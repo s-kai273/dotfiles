@@ -4,6 +4,7 @@ return {
   dependencies = { "nvim-tree/nvim-web-devicons" },
   opts = {
     default_file_explorer = true,
+    watch_for_changes = true,
     view_options = { show_hidden = true },
   },
   keys = {
@@ -14,5 +15,4 @@ return {
     },
   },
 }
-
 
