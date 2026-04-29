@@ -12,7 +12,6 @@ config.window_decorations = "RESIZE"
 config.use_ime = true
 config.warn_about_missing_glyphs = false
 
-config = require("lua.modal_wezterm").apply(config, wezterm)
 config = require("lua.keybinds").apply(config, wezterm)
 config = require("lua.toggle_opacity").apply(config, wezterm)
 
