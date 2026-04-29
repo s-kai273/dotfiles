@@ -20,6 +20,14 @@ vim.opt.undofile = true
 vim.opt.termguicolors = true
 vim.opt.signcolumn = "auto"
 
+vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "CursorHold", "CursorHoldI" }, {
+  callback = function()
+    if vim.fn.mode() ~= "c" then
+      vim.cmd("checktime")
+    end
+  end,
+})
+
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
