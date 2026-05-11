@@ -12,13 +12,15 @@ return {
       },
 
       "nvim-telescope/telescope-ui-select.nvim",
+      "nvim-telescope/telescope-live-grep-args.nvim",
       "nvim-tree/nvim-web-devicons",
     },
 
     cmd = "Telescope",
     keys = {
       { "<leader>ff", function() require("telescope.builtin").find_files() end,                                                       desc = "Find files" },
-      { "<leader>fg", function() require("telescope.builtin").live_grep() end,                                                        desc = "Live grep" },
+      { "<leader>fg", function() require("telescope").extensions.live_grep_args.live_grep_args() end,                                  desc = "Live grep args" },
+      { "<leader>fG", function() require("telescope.builtin").live_grep() end,                                                        desc = "Live grep" },
       { "<leader>bb", function() require("telescope.builtin").buffers() end,                                                          desc = "Buffers" },
       { "<leader>fh", function() require("telescope.builtin").help_tags() end,                                                        desc = "Help" },
       { "<leader>fd", function() require("telescope.builtin").diagnostics() end,                                                      desc = "Diagnostics" },
@@ -29,6 +31,7 @@ return {
     config = function()
       local telescope = require("telescope")
       local actions = require("telescope.actions")
+      local lga_actions = require("telescope-live-grep-args.actions")
 
       local picker_opts = {
         sort_mru = true,
@@ -59,6 +62,14 @@ return {
             case_mode = "smart_case",
           },
           ["ui-select"] = require("telescope.themes").get_dropdown({}),
+          live_grep_args = {
+            auto_quoting = false,
+            mappings = {
+              i = {
+                ["<C-g>"] = lga_actions.quote_prompt({ postfix = " --glob " }),
+              },
+            },
+          },
         },
         pickers = {
           find_files = picker_opts,
@@ -74,6 +85,7 @@ return {
 
       pcall(telescope.load_extension, "fzf")
       pcall(telescope.load_extension, "ui-select")
+      pcall(telescope.load_extension, "live_grep_args")
     end,
   },
 }
