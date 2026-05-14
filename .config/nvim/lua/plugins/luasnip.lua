@@ -8,6 +8,17 @@ return {
   config = function()
     require("luasnip.loaders.from_vscode").lazy_load()
     local ls = require("luasnip")
+    local s = ls.snippet
+    local f = ls.function_node
+
+    ls.add_snippets("all", {
+      s("utcnow", {
+        f(function()
+          return os.date("!%Y-%m-%dT%H:%M:%SZ")
+        end),
+      }),
+    })
+
     vim.keymap.set({ "i" }, "<C-K>", function() ls.expand() end, { silent = true })
     vim.keymap.set({ "i", "s" }, "<C-L>", function() ls.jump(1) end, { silent = true })
     vim.keymap.set({ "i", "s" }, "<C-J>", function() ls.jump(-1) end, { silent = true })
@@ -19,4 +30,3 @@ return {
     end, { silent = true })
   end,
 }
-
