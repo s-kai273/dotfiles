@@ -88,13 +88,6 @@ return {
       dap.listeners.before.launch.dapui_config = function()
         dapui.open()
       end
-      dap.listeners.before.event_terminated.dapui_config = function()
-        dapui.close()
-      end
-      dap.listeners.before.event_exited.dapui_config = function()
-        dapui.close()
-      end
-
       vim.keymap.set("n", "<leader>du", dapui.toggle, { desc = "Toggle debugger UI" })
     end,
   },
@@ -114,6 +107,25 @@ return {
           capabilities = capabilities,
         },
       }
+    end,
+    config = function()
+      local rust_dap = require("rustaceanvim.dap")
+      local original_start = rust_dap.start
+
+      rust_dap.start = function(args, verbose, callback, on_error)
+        local function start_with_runnable_cwd(config)
+          config = vim.deepcopy(config)
+          config.cwd = args.cwd or args.workspaceRoot or config.cwd
+
+          if type(callback) == "function" then
+            callback(config)
+          else
+            require("dap").run(config)
+          end
+        end
+
+        return original_start(args, verbose, start_with_runnable_cwd, on_error)
+      end
     end,
   },
 }
