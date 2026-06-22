@@ -38,10 +38,6 @@ vim.lsp.config("lua_ls", {
   },
 })
 
-vim.lsp.config("rust_analyzer", {
-  capabilities = capabilities,
-})
-
 vim.lsp.config("pyright", {
   capabilities = capabilities,
   settings = {
@@ -60,4 +56,4 @@ vim.lsp.config("ruff", {
   capabilities = capabilities,
 })
 
-vim.lsp.enable({ "ts_ls", "eslint", "lua_ls", "rust_analyzer", "pyright", "ruff" })
+vim.lsp.enable({ "ts_ls", "eslint", "lua_ls", "pyright", "ruff" })

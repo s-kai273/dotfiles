@@ -5,7 +5,7 @@ vim.diagnostic.config({
   severity_sort = true,
 })
 
-local timer = vim.loop.new_timer()
+local timer = vim.uv.new_timer()
 
 vim.api.nvim_create_autocmd("CursorMoved", {
   callback = function()
