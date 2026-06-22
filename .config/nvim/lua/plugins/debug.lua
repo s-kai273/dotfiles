@@ -56,6 +56,7 @@ return {
       local dapui = require("dapui")
 
       dapui.setup({
+        wrap = true,
         mappings = {
           watch = "<leader>dw",
         },
