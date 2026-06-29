@@ -15,6 +15,9 @@ return {
         "rust_analyzer",
         "jdtls",
       },
+      automatic_enable = {
+        exclude = { "rust_analyzer" },
+      },
     },
   },
   {
