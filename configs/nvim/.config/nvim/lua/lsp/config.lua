@@ -8,14 +8,19 @@ vim.api.nvim_create_autocmd("LspAttach", {
 })
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities.workspace = capabilities.workspace or {}
-capabilities.workspace.didChangeWatchedFiles = capabilities.workspace.didChangeWatchedFiles or {}
-capabilities.workspace.didChangeWatchedFiles.dynamicRegistration = true
 
 local ok, cmp = pcall(require, "cmp_nvim_lsp")
 if ok then
-  capabilities = cmp.default_capabilities(capabilities)
+  capabilities = vim.tbl_deep_extend(
+    "force",
+    capabilities,
+    cmp.default_capabilities()
+  )
 end
+
+capabilities.workspace = capabilities.workspace or {}
+capabilities.workspace.didChangeWatchedFiles = capabilities.workspace.didChangeWatchedFiles or {}
+capabilities.workspace.didChangeWatchedFiles.dynamicRegistration = true
 
 vim.lsp.config("ts_ls", {
   capabilities = capabilities,
@@ -45,7 +50,7 @@ vim.lsp.config("pyright", {
       analysis = {
         autoImportCompletions = true,
         autoSearchPaths = true,
-        diagnosticMode = "workspace",
+        diagnosticMode = "openFilesOnly",
         useLibraryCodeForTypes = true,
       }
     }
