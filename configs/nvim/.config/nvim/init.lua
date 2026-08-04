@@ -31,7 +31,24 @@ vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "CursorHold", "CursorHo
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
-vim.opt.rtp:prepend(vim.fn.stdpath("data") .. "/lazy/lazy.nvim")
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if vim.fn.isdirectory(lazypath) == 0 then
+  vim.fn.mkdir(vim.fn.fnamemodify(lazypath, ":h"), "p")
+  local clone_output = vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "--branch=stable",
+    "https://github.com/folke/lazy.nvim.git",
+    lazypath,
+  })
+
+  if vim.v.shell_error ~= 0 then
+    error("Failed to clone lazy.nvim:\n" .. clone_output)
+  end
+end
+
+vim.opt.rtp:prepend(lazypath)
 require("lazy").setup("plugins")
 
 require("keymaps")
