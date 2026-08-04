@@ -1,12 +1,15 @@
 # Setup
 
-## 1. Install GNU Stow
+## 1. Install dependencies
 
-Install GNU Stow using your package manager:
+Install the following tools before running the setup script:
 
-```sh
-sudo apt install stow
-```
+- git
+- stow
+- tmux
+- starship
+- wezterm
+- nvim
 
 ## 2. Create symbolic links
 
