@@ -16,6 +16,7 @@ vim.opt.cursorcolumn = false
 vim.opt.swapfile = false
 vim.opt.backup = false
 vim.opt.autoread = true
+vim.opt.updatetime = 1000
 vim.opt.undofile = true
 vim.opt.termguicolors = true
 vim.opt.signcolumn = "auto"
