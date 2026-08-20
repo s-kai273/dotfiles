@@ -9,6 +9,7 @@ return {
     opts = {
       ensure_installed = {
         "ts_ls",
+        "eslint",
         "lua_ls",
         "pyright",
         "ruff",
