@@ -33,14 +33,9 @@ return {
       local actions = require("telescope.actions")
       local lga_actions = require("telescope-live-grep-args.actions")
 
-      local picker_opts = {
-        sort_mru = true,
-        ignore_current_buffer = true,
-        path_display = { "truncate" },
-      }
-
       telescope.setup({
         defaults = {
+          path_display = { "truncate" },
           mappings = {
             i = {
               ["<C-j>"] = actions.move_selection_next,
@@ -72,14 +67,14 @@ return {
           },
         },
         pickers = {
-          find_files = picker_opts,
-          live_grep = picker_opts,
-          buffers = vim.tbl_deep_extend("force", picker_opts, {
+          buffers = {
+            sort_mru = true,
+            ignore_current_buffer = true,
             mappings = {
               i = { ["<C-d>"] = actions.delete_buffer },
               n = { ["<C-d>"] = actions.delete_buffer },
-            }
-          }),
+            },
+          },
         }
       })
 
