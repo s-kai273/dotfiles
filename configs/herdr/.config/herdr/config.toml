@@ -4,6 +4,19 @@ split_horizontal = "prefix+s"
 settings = "prefix+shift+s"
 previous_workspace = "prefix+shift+k"
 next_workspace = "prefix+shift+j"
+edit_scrollback = "prefix+shift+e"
+
+[[keys.command]]
+key = "prefix+e"
+type = "plugin_action"
+command = "chmarax.herdr-nvim.toggle"
+description = "toggle Neovim sidebar"
+
+[[keys.command]]
+key = "prefix+o"
+type = "plugin_action"
+command = "chmarax.herdr-nvim.pick-file"
+description = "open file from agent output"
 
 [ui.toast]
 delivery = "off"
