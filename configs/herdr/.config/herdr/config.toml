@@ -2,6 +2,8 @@
 prefix = "ctrl+a"
 split_horizontal = "prefix+s"
 settings = "prefix+shift+s"
+previous_workspace = "prefix+shift+k"
+next_workspace = "prefix+shift+j"
 
 [ui.toast]
 delivery = "off"
