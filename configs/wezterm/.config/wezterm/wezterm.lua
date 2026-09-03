@@ -7,7 +7,7 @@ config.font = wezterm.font_with_fallback({
   "JetBrains Mono",
 })
 config.font_size = 12.0
-config.hide_tab_bar_if_only_one_tab = false
+config.enable_tab_bar = false
 config.window_decorations = "RESIZE"
 config.use_ime = true
 config.warn_about_missing_glyphs = false
