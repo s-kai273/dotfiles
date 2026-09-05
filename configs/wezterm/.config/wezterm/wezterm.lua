@@ -8,7 +8,7 @@ config.font = wezterm.font_with_fallback({
 })
 config.font_size = 12.0
 config.enable_tab_bar = false
-config.window_decorations = "RESIZE"
+config.window_decorations = "TITLE | RESIZE"
 config.use_ime = true
 config.warn_about_missing_glyphs = false
 
