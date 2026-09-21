@@ -21,6 +21,16 @@ vim.opt.undofile = true
 vim.opt.termguicolors = true
 vim.opt.signcolumn = "auto"
 
+vim.api.nvim_create_autocmd("InsertLeave", {
+  group = vim.api.nvim_create_augroup("DisableIME", { clear = true }),
+  desc = "Disable Fcitx 5 when leaving Insert mode",
+  callback = function()
+    if vim.fn.executable("fcitx5-remote") == 1 then
+      vim.fn.system({ "fcitx5-remote", "-c" })
+    end
+  end,
+})
+
 vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "CursorHold", "CursorHoldI" }, {
   callback = function()
     if vim.fn.mode() ~= "c" then
