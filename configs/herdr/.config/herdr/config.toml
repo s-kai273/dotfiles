@@ -1,10 +1,11 @@
 [keys]
 prefix = "ctrl+a"
+switch_workspace = "prefix+shift+1..9"
 split_horizontal = "prefix+s"
 settings = "prefix+shift+s"
-previous_workspace = "prefix+shift+k"
-next_workspace = "prefix+shift+j"
 edit_scrollback = "prefix+shift+e"
+navigate_workspace_up = "ctrl+p"
+navigate_workspace_down = "ctrl+n"
 
 [[keys.command]]
 key = "prefix+e"
