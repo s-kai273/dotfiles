@@ -36,6 +36,17 @@ return {
       telescope.setup({
         defaults = {
           path_display = { "truncate" },
+          vimgrep_arguments = {
+            "rg",
+            "--color=never",
+            "--no-heading",
+            "--with-filename",
+            "--line-number",
+            "--column",
+            "--smart-case",
+            "--hidden",
+          },
+          file_ignore_patterns = { "^%.git/", "/%.git/" },
           mappings = {
             i = {
               ["<C-j>"] = actions.move_selection_next,
@@ -67,6 +78,9 @@ return {
           },
         },
         pickers = {
+          find_files = {
+            hidden = true,
+          },
           buffers = {
             sort_mru = true,
             ignore_current_buffer = true,
