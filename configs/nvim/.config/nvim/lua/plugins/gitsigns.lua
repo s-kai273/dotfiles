@@ -48,5 +48,36 @@ return {
       row = 0,
       col = 1
     },
+    on_attach                    = function(bufnr)
+      local gitsigns = require('gitsigns')
+
+      local function map(lhs, rhs, desc)
+        vim.keymap.set('n', lhs, rhs, { buffer = bufnr, desc = desc })
+      end
+
+      map(']h', function() gitsigns.nav_hunk('next') end, 'Next git hunk')
+      map('[h', function() gitsigns.nav_hunk('prev') end, 'Previous git hunk')
+      map('<leader>hp', gitsigns.preview_hunk_inline, 'Preview git hunk inline')
+
+      -- Overlay the diff on the buffer itself so LSP navigation keeps working
+      map('<leader>gd', function()
+        gitsigns.toggle_word_diff(gitsigns.toggle_linehl())
+      end, 'Toggle git diff highlight')
+
+      -- Compare against the merge-base so the diff matches what a PR would show
+      map('<leader>gb', function()
+        vim.ui.input({ prompt = 'Diff base: ', default = 'origin/main' }, function(rev)
+          if not rev or rev == '' then
+            return
+          end
+          local dir = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(bufnr), ':h')
+          local merge_base = vim.fn.systemlist({ 'git', '-C', dir, 'merge-base', 'HEAD', rev })[1]
+          gitsigns.change_base(vim.v.shell_error == 0 and merge_base or rev, true)
+        end)
+      end, 'Change git diff base')
+      map('<leader>gB', function() gitsigns.reset_base(true) end, 'Reset git diff base')
+
+      map('<leader>gl', function() gitsigns.setqflist('all') end, 'List git hunks in quickfix')
+    end,
   }
 }
