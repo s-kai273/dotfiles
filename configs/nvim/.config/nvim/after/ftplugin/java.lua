@@ -48,16 +48,25 @@ end
 local project_name = vim.fn.fnamemodify(root_dir, ":t") .. "-" .. vim.fn.sha256(root_dir):sub(1, 8)
 local workspace_dir = vim.fn.stdpath("cache") .. "/jdtls-workspace/" .. project_name
 
+local cmd = {
+  jdtls_cmd,
+  -- jdtls sets no max heap, so the JVM default (1/4 of RAM) applies to every
+  -- instance; cap it since each nvim runs its own server.
+  "--jvm-arg=-Xmx2g",
+  "-data",
+  workspace_dir,
+}
+
+-- The Eclipse compiler ignores Gradle's annotationProcessor, so Lombok must be
+-- loaded as an agent for generated members (e.g. `@Data` setters) to resolve.
+local lombok_jar = mason_path .. "/lombok.jar"
+if vim.fn.filereadable(lombok_jar) == 1 then
+  table.insert(cmd, 2, "--jvm-arg=-javaagent:" .. lombok_jar)
+end
+
 jdtls.start_or_attach({
   capabilities = capabilities,
-  cmd = {
-    jdtls_cmd,
-    -- jdtls sets no max heap, so the JVM default (1/4 of RAM) applies to every
-    -- instance; cap it since each nvim runs its own server.
-    "--jvm-arg=-Xmx2g",
-    "-data",
-    workspace_dir,
-  },
+  cmd = cmd,
   root_dir = root_dir,
   settings = {
     java = {
